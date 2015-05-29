@@ -1,0 +1,431 @@
+
+// get bootstrap!
+@import "../bootstrap/less/bootstrap.less";
+@import "style.variables.less";
+@import "style.theme-defaults.less";
+@import "style.mixins.less";
+@import "style.realpages.less";
+
+@import "../marka-0.3.1/src/less/marka-core.less";
+@import "../marka-0.3.1/src/less/icons/icon-times.less";
+@import "../marka-0.3.1/src/less/icons/icon-bars.less";
+
+
+
+
+// ================================================================================== GENERALLY SPEAKING:
+
+body { font-size: 18px; }
+a:hover {
+  opacity: @hover-opacity;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: @maroon;
+}
+a:focus, a:active, a:visited, a:link {
+  text-decoration: none;
+}
+.excerpt {
+  margin: @space 0;
+}
+p.title {
+  color: @black;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+  a { color: @black }
+}
+input {
+  width: 100%;
+}
+input[type="submit"] {
+  background: @maroon;
+  border-radius: @border-radius-small;
+  color: @white;
+  border: none;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+img { max-width: 100% !important; height: auto !important;}
+
+// ================================================================================== SEARCH FORM:
+
+.search-form {
+  .screen-reader-text {
+    display: none;
+  }
+  input[type="submit"], button {
+    background: none;
+    border: none;
+    text-indent: -99999px;
+    background-image: url(../img/icon-magnifying-glass.png);
+    height: 40px;
+    width: 40px;
+    margin-right: 5px;
+  }
+  input[type="submit"]:hover { opacity: @hover-opacity; }
+  input[type="search"], input[type="text"] {
+    width: auto;
+    height: 40px;
+    border-style: solid;
+    border-color: @grey;
+    font-weight: normal;
+    padding:0 10px;
+  }
+}
+
+// ================================================================================== MOBILE HEADER:
+
+.strata.mobile-navbar {
+  padding-top: @halfspace;
+  padding-bottom: @halfspace;
+  border-bottom: solid @grey 8px;
+  h1.logo {
+    padding: 0;
+    margin: 0;
+    a {
+      background: url(../img/klrt-logo.png) top right; //no-repeat;
+      width: 74px;
+      height: 40px;
+      text-indent: 9999px;
+      display: block;
+      float: right;
+      background-size: contain;
+      overflow: hidden;
+    }
+  }
+}
+
+// ================================================================================== DESKTOP HEADER:
+
+.strata.strata-header {
+  font-size: 20px;
+  margin: @space 0 0 0;
+  h1.logo {
+    padding: 0;
+    margin: 0;
+    a {
+      background: url(../img/klrt-logo.png);
+      width: 215px;
+      height: 117px;
+      text-indent: -9999px;
+      display: block;
+    }
+  }
+  ul.social-media {
+    text-style: none;
+    padding: 0;
+    margin: 0 0 @space 0;
+    display: inline;
+    li {
+      display: inline;
+      a {
+        display: inline-block;
+        width: 43px;
+        height: 42px;
+        text-indent: -9999px;
+        background-image: url(../img/social-icon-sprite.png);
+      }
+    }
+    @header-sm-sprite-width: -60.6px;
+    li.twitter a { background-position: @header-sm-sprite-width;}
+    li.linkedin a { background-position: @header-sm-sprite-width*2;}
+    li.instagram a { background-position: @header-sm-sprite-width*3;}
+    li.pinterest a { background-position: @header-sm-sprite-width*4;}
+    li.googleplus a { background-position: @header-sm-sprite-width*5;}
+    li.feed a { background-position: @header-sm-sprite-width*6;}
+  }
+  nav {
+    margin-top: 10px;
+    float: right;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 999;
+    }
+
+    ul.menu {
+      float: left;
+      //margin-bottom: 3px;
+      > li > a:hover {
+        opacity: @hover-opacity;
+      }
+      li {
+         display: block;
+         position: relative;
+         float: left;
+         a {
+           color: @black;
+           display: block;
+           margin: 5px 15px;
+           border-bottom: 5px solid transparent;
+           padding: 0 !important;
+           white-space: nowrap;
+         }
+       }
+      li.current-menu-item, li.current-menu-ancestor {
+        > a {
+          border-bottom-color: @maroon;
+        }
+      }
+      li:hover > ul {
+        display: block;
+        position: absolute;
+        z-index: 999;
+      }
+      li:hover ul {
+        background: @white;
+        li {
+          float: none;
+        }
+      }
+    }
+    li ul { display: none; }
+  }
+}
+
+// ================================================================================== CONTENT STRATA
+.strata-content {
+  padding-top: @space;
+  padding-bottom: @space;
+  .crumb {
+    font-size: 20px;
+    color: @maroon;
+    margin-bottom: @halfspace;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        a { color: @maroon; }
+        display: inline;
+      }
+      li:after {
+        content: " > "
+      }
+      li:last-child:after {
+        content: none;
+      }
+    }
+  }
+}
+
+// ================================================================================== SIDEBAR
+
+.sidebar {
+  h3:first-child {
+    margin-top: 0;
+  }
+}
+
+// ================================================================================== HOME PAGE
+
+.strata-home-content {
+  a.home-banner h2 {
+    display: block;
+    color: @white;
+    border-radius: @border-radius-large;
+    border: 2px solid @grey;
+    text-align: center;
+    margin: @halfspace 0;
+    padding: @halfspace;
+    background: url(../img/horizontal-stripe.png);
+  }
+  a.home-banner:hover h2 {
+    opacity: @hover-opacity;
+  }
+}
+
+// ================================================================================== BLOG
+
+.blog-post {
+  margin: @doublespace 0;
+  border-bottom: 4px solid @grey;
+  padding-bottom: @space;
+  .mashsb-count { color: @maroon }
+}
+.paginate {
+  .clearfix;
+}
+
+// ================================================================================== FOOTER
+
+.strata-footer {
+  background: @grey;
+  padding: @doublespace 0;
+  .logo {
+    background: url(../img/royal-lepage-network-group-logo.png);
+    width: 287px;
+    height: 126px;
+    margin-top: @doublespace;
+  }
+
+}
+@media(max-width: @screen-xs-max){}
+
+@media(max-width: @screen-sm-max){
+
+  // ================================================================================== MOBILE ONLY:
+  .sidebar {
+    margin-top: @doublespace;
+    padding-top: @doublespace;
+  }
+  .strata-footer p {
+    font-size: 12px;
+  }
+
+}
+@media(min-width: @screen-tablet){}     /* or @screen-sm */
+
+// ================================================================================== DESKTOP:
+@media(min-width: @screen-desktop){    /* or @screen-md */
+
+  // ================================= DESKTOP HEADER:
+
+  .strata.strata-header {
+    margin: @space 0 0 0;
+
+    border-bottom: 8px solid @grey;
+
+    h1.logo {
+      padding: 0;
+      margin: 0;
+      a {
+        background: url(../img/klrt-logo.png);
+        width: 215px;
+        height: 117px;
+        text-indent: -9999px;
+        display: block;
+      }
+    }
+    ul.social-media {
+      text-style: none;
+      padding: 0;
+      margin: 0 0 @space 0;
+      display: inline;
+      li {
+        display: inline;
+        a {
+          display: inline-block;
+          width: 43px;
+          height: 42px;
+          text-indent: -9999px;
+          background-image: url(../img/social-icon-sprite.png);
+        }
+      }
+      @header-sm-sprite-width: -60.6px;
+      li.twitter a { background-position: @header-sm-sprite-width;}
+      li.linkedin a { background-position: @header-sm-sprite-width*2;}
+      li.instagram a { background-position: @header-sm-sprite-width*3;}
+      li.pinterest a { background-position: @header-sm-sprite-width*4;}
+      li.googleplus a { background-position: @header-sm-sprite-width*5;}
+      li.rss a { background-position: @header-sm-sprite-width*6;}
+    }
+    nav {
+      margin-top: 10px;
+      margin-right: @halfspace * -1;
+      float: right;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 999;
+      }
+
+      ul.menu {
+        float: left;
+        > li > a:hover {
+          opacity: @hover-opacity;
+        }
+        li {
+          display: block;
+          position: relative;
+          float: left;
+          a {
+            color: @black;
+            display: block;
+            padding: 5px 15px;
+          }
+        }
+        li:hover > ul {
+          display: block;
+          position: absolute;
+          z-index: 999;
+        }
+        li:hover ul {
+          background: @white;
+          border-bottom: 8px solid @grey;
+          border-left: 8px solid @grey;
+          border-right: 8px solid @grey;
+
+          li {
+            float: none;
+          }
+        }
+      }
+      li ul { display: none; }
+    }
+  }
+
+  // ================================= CONTENT STRATA :
+
+  .strata-content {
+    margin-top: 48px;
+    padding-top: @space;
+    background-image: url(../img/horizontal-stripe.png ); // IE8
+    background-position: center top; // IE8
+    background-repeat: repeat-x; // IE8
+    background-image: url(../img/horizontal-stripe.png ), url(../img/klrt-logo-bg.png);
+    background-position: center top, center bottom;
+    background-repeat: repeat-x, no-repeat;
+
+    margin-top: 0;
+    padding-top: 100px;
+    .container {
+      padding-bottom: @space;
+    }
+  }
+
+
+  // ================================= HOMEPAGE :
+  .strata-home-content {
+    padding-top: 0;
+    background-image: url(../img/horizontal-stripe-thick.png), url(../img/klrt-logo-bg.png);
+    background-position: center top, center bottom;
+    background-repeat: repeat-x, no-repeat;
+    a.home-banner {
+      display: block;
+      background: url(../img/home-banner-aerial.jpg);
+      background-repeat: no-repeat;
+      padding-top: 470px;
+      h2 {
+        padding-top: 18px;
+        background: url(../img/home-page-banner-button-bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: none;
+        height: 70px;
+      }
+    }
+    a.home-banner:hover {
+      opacity: 1;
+      h2 {
+        opacity: 1;
+        color: @grey;
+      }
+    }
+  }
+
+
+}
+@media(min-width: @screen-lg-desktop){} /* or @screen-lg */
